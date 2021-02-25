@@ -18,7 +18,7 @@
 > git clone https://github.com/lvstr/anonymxs
 ```
 ## Install MongoDB
-> <a href="https://docs.mongodb.com/manual/administration/install-on-linux/">Windows</a>
+> <a href="https://docs.mongodb.com/manual/administration/install-mongodb-on-linux/">Windows</a>
 > <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/">MacOs</a>
 > <a href="https://docs.mongodb.com/manual/administration/install-on-linux/">Linux</a>
 Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?utm_source=google&utm_campaign=gs_apac_indonesia_search_core_brand_atlas_desktop&utm_term=mongo%20atlas&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624350&gclid=Cj0KCQiAj9iBBhCJARIsAE9qRtAQJcOiNr05S5hAZuJL01Q7ZMEmPdEJwm7hk4-y9hrfy0N5VQfvOCgaAtsXEALw_wcB">Mongo Atlas</a>
