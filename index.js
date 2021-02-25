@@ -111,7 +111,7 @@ const starts = async () => {
           sessionNotFound: `Kamu belum mempunyai Partner, silahkan ketik ${prefix}start, untuk memulai mencari Partner`,
           partnerNotFound: `❌ Gagal, partner tidak ditemukan, silahkan ketik ${prefix}start untuk mencari Partner ❌`,
           partnerStopSession: `⚠️ Partner kamu telah menghentikan Sesi, silahkan ketik ${prefix}start untuk mencari Partner lain ⚠️`,
-          stopSession: `⌛ Kamu telah menghentikan sesi, silahkan ketik ${prefix}start untuk mencari Partner lain ⌛`,
+          stopSession: `Kamu telah menghentikan sesi, silahkan ketik ${prefix}start untuk mencari Partner lain`,
           nextSession: `⌛ Kamu telah menghentikan sesi, sedang mencari Partner lain, mohon tunggu... ⌛`,
           isSession: `❌ Gagal, kamu masih memiliki Sesi dengan Partner mu sebelumnya, ketik ${prefix}stop untuk menghentikan percakapan❌`,
           notRegistered: `❌ Gagal, kamu belum terdaftar, silahkan daftar terlebih dahulu dengan mengetik ${prefix}register ❌`,
@@ -217,65 +217,6 @@ const starts = async () => {
             );
           });
       }
-
-      const addMetadata = (packname, author) => {
-        if (!packname) packname = "Anonymxs";
-        if (!author) author = "Human";
-        author = author.replace(/[^a-zA-Z0-9]/g, "");
-        let name = `${author}_${packname}`;
-        if (fs.existsSync(`./src/stickers/libs/${name}.exif`))
-          return `./src/stickers/libs/${name}.exif`;
-        const json = {
-          "sticker-pack-name": packname,
-          "sticker-pack-publisher": author,
-        };
-        const littleEndian = Buffer.from([
-          0x49,
-          0x49,
-          0x2a,
-          0x00,
-          0x08,
-          0x00,
-          0x00,
-          0x00,
-          0x01,
-          0x00,
-          0x41,
-          0x57,
-          0x07,
-          0x00,
-        ]);
-        const bytes = [0x00, 0x00, 0x16, 0x00, 0x00, 0x00];
-
-        let len = JSON.stringify(json).length;
-        let last;
-
-        if (len > 256) {
-          len = len - 256;
-          bytes.unshift(0x01);
-        } else {
-          bytes.unshift(0x00);
-        }
-
-        if (len < 16) {
-          last = len.toString(16);
-          last = "0" + len;
-        } else {
-          last = len.toString(16);
-        }
-
-        const buf2 = Buffer.from(last, "hex");
-        const buf3 = Buffer.from(bytes);
-        const buf4 = Buffer.from(JSON.stringify(json));
-
-        const buffer = Buffer.concat([littleEndian, buf2, buf3, buf4]);
-
-        fs.writeFile(`./src/stickers/libs/${name}.exif`, buffer, (err) => {
-          return `./src/stickers/libs/${name}.exif`;
-        });
-      };
-
-      //const sendSticker = async () => {};
 
       if (!isCmd) {
         findContact(from)
@@ -435,7 +376,7 @@ const starts = async () => {
                 );
               findContactPartner(from)
                 .then(async (res) => {
-                  client.sendMessage(con.partnerId, "#next", text);
+                  client.sendMessage(con.partnerId, `${prefix}next`, text);
                   client.sendMessage(
                     con.partnerId,
                     mess.error.partnerStopSession,
@@ -529,7 +470,7 @@ const starts = async () => {
                 );
               findContactPartner(from)
                 .then(async (res) => {
-                  client.sendMessage(con.partnerId, "#stop", text);
+                  client.sendMessage(con.partnerId, `${prefix}stop`, text);
                   client.sendMessage(
                     con.partnerId,
                     mess.error.partnerStopSession,
