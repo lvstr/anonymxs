@@ -13,7 +13,7 @@ exports.mess = {
     stopSession: `Kamu telah menghentikan sesi, silahkan ketik ${prefix}start untuk mencari Partner lain`,
     nextSession: `⌛ Kamu telah menghentikan sesi, sedang mencari Partner lain, mohon tunggu... ⌛`,
     isSession: `❌ Gagal, kamu masih memiliki Sesi dengan Partner mu sebelumnya, ketik ${prefix}stop untuk menghentikan percakapan❌`,
-    notRegistered: `❌ Gagal, kamu belum terdaftar, silahkan daftar terlebih dahulu dengan mengetik ${prefix}register ❌`,
+    notRegistered: `❌ Gagal, kamu belum terdaftar, ketik ${prefix}help, untuk melihat daftar Command ❌`,
     isRegistered: `❌ Kamu telah terdaftar, silahkan ketik ${prefix}start untuk mencari Partner ❌`,
     isBrokenPartner: `❌ Partner kamu sedang Bermasalah, silahkan ketik ${prefix}start untuk mencari Partner lain ❌`,
     notCommand: `❌ Kamu memasukan Command yang salah, silahkan ketik ${prefix}help untuk melihat daftar Command ❌`,
@@ -60,7 +60,7 @@ Dengan menggunakan source code / bot ini maka anda setuju dengan Syarat dan Kond
     • pembakaran hutan / penggundulan hutan
     • ujaran kebencian atau diskriminasi berdasarkan usia, jenis kelamin, identitas gender, ras, seksualitas, agama, kebangsaan
 
-    
+
 Source Code BOT : https://github.com/lvstr/Anonymxs
 Baileys WhatsApp library: https://github.com/adiwajshing/Baileys
 

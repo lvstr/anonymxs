@@ -24,7 +24,8 @@ const lang = require("./src/handler/message/language/ID_ind");
 
 const mongoose = require("mongoose");
 const db = require("./src/model/Contact");
-mongoose.connect("mongodb://localhost:27017/anon2", {
+//Isi dengan database kalian, seperti Mongo Atlas, dll
+mongoose.connect("mongodb://localhost:27017/anonymxs", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -530,10 +531,6 @@ const starts = async () => {
               client.sendMessage(getRsUser[i].contactId, txtbc, text);
             }
           }
-          break;
-
-        default:
-          client.sendMessage(from, lang.mess.error.notCommand, text);
           break;
       }
     } catch (error) {
