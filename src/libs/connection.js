@@ -69,7 +69,7 @@ const close = (id, text) => {
   spins.fail(id, { text: text });
 };
 
-const banner = cfonts.render("ANONYMXS|ANONYMOUS|WHATSAPP|BOT", {
+const banner = cfonts.render("ANONYMXS|WHATSAPP|BOT", {
   font: "chrome",
   color: "candy",
   align: "center",
