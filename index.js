@@ -210,7 +210,7 @@ const starts = async () => {
                           chat.message.conversation,
                           text
                         );
-                      } //sisanya bayar, xixixixixixixixiix
+                      } //sisanya bayar, xixixixixixixixixixixi
                     }
                   })
                   .catch(async (err) => {
