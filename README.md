@@ -43,4 +43,5 @@ Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?ut
 |       ✅       |       Bicara antar Partner       |
 | bayar, xixixi | Mengirim Sticker/Sticker Animasi |
 | Bayar, xixixi |          Mengirim Lokasi         |
-| Bayar, xixixi |       Mengirim Foto & Video      |
+| Bayar, xixixi |     Mengirim Foto/Gif & Video    |
+| Bayar, xixixi |        Mengirim Voice Note       |
