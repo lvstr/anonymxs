@@ -20,6 +20,7 @@ const {
 } = require("./src/libs/connection.js");
 const moment = require("moment-timezone");
 const ffmpeg = require("fluent-ffmpeg");
+const lang = require("./src/handler/message/language/ID_ind");
 
 const mongoose = require("mongoose");
 const db = require("./src/model/Contact");
@@ -102,27 +103,6 @@ const starts = async () => {
       const command = body.slice(1).trim().split(/ +/).shift().toLowerCase();
       const args = body.trim().split(/ +/).slice(1);
       const isCmd = body.startsWith(prefix);
-
-      mess = {
-        findPartner: "⌛ Sedang mencari Partner ⌛",
-        partnerFound: "Partner ditemukan!",
-        registerSuccess: `Berhasil melakukan Pendaftaran, silahkan ketik ${prefix}help, untuk melihat daftar Perintah`,
-        error: {
-          sessionNotFound: `Kamu belum mempunyai Partner, silahkan ketik ${prefix}start, untuk memulai mencari Partner`,
-          partnerNotFound: `❌ Gagal, partner tidak ditemukan, silahkan ketik ${prefix}start untuk mencari Partner ❌`,
-          partnerStopSession: `⚠️ Partner kamu telah menghentikan Sesi, silahkan ketik ${prefix}start untuk mencari Partner lain ⚠️`,
-          stopSession: `Kamu telah menghentikan sesi, silahkan ketik ${prefix}start untuk mencari Partner lain`,
-          nextSession: `⌛ Kamu telah menghentikan sesi, sedang mencari Partner lain, mohon tunggu... ⌛`,
-          isSession: `❌ Gagal, kamu masih memiliki Sesi dengan Partner mu sebelumnya, ketik ${prefix}stop untuk menghentikan percakapan❌`,
-          notRegistered: `❌ Gagal, kamu belum terdaftar, silahkan daftar terlebih dahulu dengan mengetik ${prefix}register ❌`,
-          isRegistered: `❌ Kamu telah terdaftar, silahkan ketik ${prefix}start untuk mencari Partner ❌`,
-          isBrokenPartner: `❌ Partner kamu sedang Bermasalah, silahkan ketik ${prefix}start untuk mencari Partner lain ❌`,
-          stick: `⚠️ Terjadi error saat mengirim sticker ⚠️`,
-        },
-        only: {
-          owner: "❌ Perintah ini hanya bisa di gunakan oleh Owner Bot! ❌",
-        },
-      };
 
       //await client.updatePresence(from, Presence.available);
       const botNumber = client.user.jid;
@@ -223,7 +203,11 @@ const starts = async () => {
           .then(async (res) => {
             let findContactResult = res;
             if (res.partnerId === null && res.status === 0)
-              return client.sendMessage(from, mess.error.sessionNotFound, text);
+              return client.sendMessage(
+                from,
+                lang.mess.error.sessionNotFound,
+                text
+              );
             chatContact()
               .then(async (res) => {
                 let contactResult = res;
@@ -236,9 +220,7 @@ const starts = async () => {
                           chat.message.conversation,
                           text
                         );
-                      } else if (type == "sticker") {
-                        // Premium only xixixi
-                      }
+                      } //sisanya bayar xixixixixixixixixixixixixixixi
                     }
                   })
                   .catch(async (err) => {
@@ -246,15 +228,23 @@ const starts = async () => {
                     findContactResult.status = 0;
                     findContactResult.partnerId = null;
                     await findContactResult.save();
-                    client.sendMessage(from, mess.error.isBrokenPartner, text);
+                    client.sendMessage(
+                      from,
+                      lang.mess.error.isBrokenPartner,
+                      text
+                    );
                   });
               })
               .catch(async () => {
-                client.sendMessage(from, mess.error.sessionNotFound, text);
+                client.sendMessage(from, lang.mess.error.sessionNotFound, text);
               });
           })
           .catch(() => {
-            return client.sendMessage(from, mess.error.notRegistered, text);
+            return client.sendMessage(
+              from,
+              lang.mess.error.notRegistered,
+              text
+            );
           });
       }
 
@@ -263,20 +253,23 @@ const starts = async () => {
           console.log(MessageType);
           break;
         case "help":
-          client.sendMessage(from, "help", text);
+          client.sendMessage(from, lang.help(), text);
+          break;
+        case "tnc":
+          client.sendMessage(from, lang.tnc(), text);
           break;
         case "register":
           await findContact(from)
             .then(async (res) => {
               if (res === null) {
                 await db.create({ contactId: from });
-                client.sendMessage(from, mess.registerSuccess, text);
+                client.sendMessage(from, lang.mess.registerSuccess, text);
               } else {
-                client.sendMessage(from, mess.error.isRegistered, text);
+                client.sendMessage(from, lang.mess.error.isRegistered, text);
               }
             })
             .catch(async () => {
-              client.sendMessage(from, mess.error.isRegistered, text);
+              client.sendMessage(from, lang.mess.error.isRegistered, text);
             });
           break;
 
@@ -290,7 +283,7 @@ const starts = async () => {
                     if (res.partnerId === null) {
                       con.status = 1;
                       await con.save();
-                      client.sendMessage(from, mess.findPartner, text);
+                      client.sendMessage(from, lang.mess.findPartner, text);
                       const findPartner = new Promise((resolve, reject) => {
                         setInterval(async () => {
                           const partnerQuery = await db
@@ -315,12 +308,12 @@ const starts = async () => {
                           await res.save();
                           client.sendMessage(
                             res.contactId,
-                            mess.partnerFound,
+                            lang.mess.partnerFound,
                             text
                           );
                           client.sendMessage(
                             res.partnerId,
-                            mess.partnerFound,
+                            lang.mess.partnerFound,
                             text
                           );
                         })
@@ -330,7 +323,7 @@ const starts = async () => {
                               if (res.partnerId === null) {
                                 client.sendMessage(
                                   from,
-                                  mess.error.partnerNotFound,
+                                  lang.mess.error.partnerNotFound,
                                   text
                                 );
                                 res.status = 0;
@@ -352,14 +345,22 @@ const starts = async () => {
                   res.status = 0;
                   res.partnerId = null;
                   await res.save();
-                  client.sendMessage(from, mess.error.isBrokenPartner, text);
+                  client.sendMessage(
+                    from,
+                    lang.mess.error.isBrokenPartner,
+                    text
+                  );
                 } else if (res.partnerId !== null && res.status !== 0) {
-                  return client.sendMessage(from, mess.error.isSession, text);
+                  return client.sendMessage(
+                    from,
+                    lang.mess.error.isSession,
+                    text
+                  );
                 }
               }
             })
             .catch(() => {
-              client.sendMessage(from, mess.error.notRegistered, text);
+              client.sendMessage(from, lang.mess.error.notRegistered, text);
             });
 
           break;
@@ -371,7 +372,7 @@ const starts = async () => {
               if (res.status === 0)
                 return client.sendMessage(
                   from,
-                  mess.error.sessionNotFound,
+                  lang.mess.error.sessionNotFound,
                   text
                 );
               findContactPartner(from)
@@ -379,7 +380,7 @@ const starts = async () => {
                   client.sendMessage(con.partnerId, `${prefix}next`, text);
                   client.sendMessage(
                     con.partnerId,
-                    mess.error.partnerStopSession,
+                    lang.mess.error.partnerStopSession,
                     text
                   );
                   con.status = 1;
@@ -388,7 +389,7 @@ const starts = async () => {
                   res.partnerId = null;
                   res.status = 0;
                   await res.save();
-                  client.sendMessage(from, mess.error.nextSession, text);
+                  client.sendMessage(from, lang.mess.error.nextSession, text);
                   const findPartner = new Promise((resolve, reject) => {
                     setInterval(async () => {
                       const partnerQuery = await db
@@ -413,19 +414,19 @@ const starts = async () => {
                           await con.save();
                           client.sendMessage(
                             con.contactId,
-                            mess.partnerFound,
+                            lang.mess.partnerFound,
                             text
                           );
                           client.sendMessage(
                             res.partnerId,
-                            mess.partnerFound,
+                            lang.mess.partnerFound,
                             text
                           );
                         })
                         .catch((err) => {
                           client.sendMessage(
                             from,
-                            mess.error.notRegistered,
+                            lang.mess.error.notRegistered,
                             text
                           );
                         });
@@ -436,7 +437,7 @@ const starts = async () => {
                           if (res.partnerId === null) {
                             client.sendMessage(
                               from,
-                              mess.error.partnerNotFound,
+                              lang.mess.error.partnerNotFound,
                               text
                             );
                             res.status = 0;
@@ -450,11 +451,15 @@ const starts = async () => {
                   con.status = 0;
                   con.partnerId = null;
                   await con.save();
-                  client.sendMessage(from, mess.error.isBrokenPartner, text);
+                  client.sendMessage(
+                    from,
+                    lang.mess.error.isBrokenPartner,
+                    text
+                  );
                 });
             })
             .catch(() => {
-              client.sendMessage(from, mess.error.notRegistered, text);
+              client.sendMessage(from, lang.mess.error.notRegistered, text);
             });
 
           break;
@@ -465,7 +470,7 @@ const starts = async () => {
               if (res.status === 0)
                 return client.sendMessage(
                   from,
-                  mess.error.sessionNotFound,
+                  lang.mess.error.sessionNotFound,
                   text
                 );
               findContactPartner(from)
@@ -473,7 +478,7 @@ const starts = async () => {
                   client.sendMessage(con.partnerId, `${prefix}stop`, text);
                   client.sendMessage(
                     con.partnerId,
-                    mess.error.partnerStopSession,
+                    lang.mess.error.partnerStopSession,
                     text
                   );
                   con.status = 0;
@@ -482,17 +487,21 @@ const starts = async () => {
                   res.status = 0;
                   res.partnerId = null;
                   await res.save();
-                  client.sendMessage(from, mess.error.stopSession, text);
+                  client.sendMessage(from, lang.mess.error.stopSession, text);
                 })
                 .catch(async (err) => {
                   con.status = 0;
                   con.partnerId = null;
                   await con.save();
-                  client.sendMessage(from, mess.error.isBrokenPartner, text);
+                  client.sendMessage(
+                    from,
+                    lang.mess.error.isBrokenPartner,
+                    text
+                  );
                 });
             })
             .catch(() => {
-              client.sendMessage(from, mess.error.notRegistered, text);
+              client.sendMessage(from, lang.mess.error.notRegistered, text);
             });
 
           break;
@@ -517,10 +526,14 @@ const starts = async () => {
           if (isOwner) {
             bctxt = body.slice(9);
             txtbc = `*SERVER RESTARTED*\n\n*Note:* ${bctxt}`;
-            for (let i = 0; i < getRsUser.length; i++) {
+            for (let i = 0; si < getRsUser.length; i++) {
               client.sendMessage(getRsUser[i].contactId, txtbc, text);
             }
           }
+          break;
+
+        default:
+          client.sendMessage(from, lang.mess.error.notCommand, text);
           break;
       }
     } catch (error) {
