@@ -24,8 +24,7 @@ const lang = require("./src/handler/message/language/ID_ind");
 
 const mongoose = require("mongoose");
 const db = require("./src/model/Contact");
-//Isi dengan database kalian, seperti Mongo Atlas, dll
-mongoose.connect("mongodb://localhost:27017/anonymxs", {
+mongoose.connect("mongodb://localhost:27017/anon2", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -85,7 +84,6 @@ const starts = async () => {
         product,
       } = MessageType;
       const time = moment.tz("Asia/Jakarta").format("DD/MM HH:mm:ss");
-      const content = JSON.stringify(chat.message);
       const from = chat.key.remoteJid;
       const type = Object.keys(chat.message)[0];
       body =
@@ -105,22 +103,13 @@ const starts = async () => {
       const args = body.trim().split(/ +/).slice(1);
       const isCmd = body.startsWith(prefix);
 
-      //await client.updatePresence(from, Presence.available);
       const botNumber = client.user.jid;
-      const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`]; // replace this with your number
+      const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`];
       const sender = chat.key.remoteJid;
       const isOwner = ownerNumber.includes(sender);
 
       colors = ["red", "white", "black", "blue", "yellow", "green"];
       const isMedia = type === "imageMessage" || type === "videoMessage";
-      const isChat = type === "text";
-      const isQuotedImage =
-        type === "extendedTextMessage" && content.includes("imageMessage");
-      const isQuotedVideo =
-        type === "extendedTextMessage" && content.includes("videoMessage");
-      const isQuotedSticker =
-        type === "extendedTextMessage" && content.includes("stickerMessage");
-
       // Database Query
       const findContact = async (contact) => {
         let findContact = await db.findOne({ contactId: contact });
@@ -221,7 +210,7 @@ const starts = async () => {
                           chat.message.conversation,
                           text
                         );
-                      } //sisanya bayar xixixixixixixixixixixixixixixi
+                      } //sisanya bayar, xixixixixixixixiix
                     }
                   })
                   .catch(async (err) => {
