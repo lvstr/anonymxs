@@ -27,6 +27,7 @@ Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?ut
 ## Run
 ```bash
 > cd Anonymxs
+> npm i
 > npm start
 ```
 
