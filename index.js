@@ -1,3 +1,4 @@
+require("dotenv").config();
 const {
   WAConnection,
   MessageType,
@@ -24,7 +25,7 @@ const lang = require("./src/handler/message/language/ID_ind");
 
 const mongoose = require("mongoose");
 const db = require("./src/model/Contact");
-mongoose.connect("mongodb://localhost:27017/anonymxs", {
+mongoose.connect(`${process.env.MONGO_URI}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
