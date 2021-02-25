@@ -24,7 +24,7 @@
 Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?utm_source=google&utm_campaign=gs_apac_indonesia_search_core_brand_atlas_desktop&utm_term=mongo%20atlas&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624350&gclid=Cj0KCQiAj9iBBhCJARIsAE9qRtAQJcOiNr05S5hAZuJL01Q7ZMEmPdEJwm7hk4-y9hrfy0N5VQfvOCgaAtsXEALw_wcB">Mongo Atlas</a>
 
 ## Config
-Edit di `src/libs/setting.json`
+Edit di `src/libs/settings.json`
 ```bash
 {
  > "prefix": "/", //Isi sesuai Prefix yang kamu mau
