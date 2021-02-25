@@ -30,6 +30,13 @@ Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?ut
  > "prefix": "/",
  > "ownerNumber": "62xxxxxx" //Isi nomor hp kamu
 }
+
+> Connect ke Database, isi url dengan url databse, jika pakai localhost, gausah diganti
+> mongoose.connect("mongodb://localhost:27017/anonymxs", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 ```
 
 ## Run
