@@ -38,7 +38,6 @@ Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?ut
 |     ✅    |   /next   | Menghentikan Sesi sebelumnya dan mencari Sesi baru |
 |     ✅    |   /stop   |                  Menghentikan Sesi                 |
 
-<br/>
 | Anonymxs      |               Fitur              |
 |---------------|:--------------------------------:|
 |       ✅       |       Bicara antar Partner       |
