@@ -25,18 +25,16 @@ Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?ut
 
 ## Config
 ```bash
-> src/libs/setting.json
+src/libs/setting.json
 {
  > "prefix": "/",
  > "ownerNumber": "62xxxxxx" //Isi nomor hp kamu
 }
-
-> Connect ke Database, isi url dengan url databse, jika pakai localhost, gausah diganti
-> mongoose.connect("mongodb://localhost:27017/anonymxs", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
+```
+## Database Config
+```bash
+.env
+> MONGO_URI=mongodb://localhost:27017/anonymxs //ganti sesuai ip Database, jika menggunakan localhost bisa skip
 ```
 
 ## Run
