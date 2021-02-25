@@ -289,11 +289,15 @@ const starts = async () => {
                 findContactPartner(contactResult.contactId)
                   .then(async (res) => {
                     if (res.contactId === contactResult.partnerId) {
-                      client.sendMessage(
-                        contactResult.partnerId,
-                        chat.message.conversation,
-                        text
-                      );
+                      if (type === "conversation") {
+                        client.sendMessage(
+                          contactResult.partnerId,
+                          chat.message.conversation,
+                          text
+                        );
+                      } else if (type == "sticker") {
+                        // Premium only xixixi
+                      }
                     }
                   })
                   .catch(async (err) => {
