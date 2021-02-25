@@ -238,7 +238,6 @@ const starts = async () => {
                     }
                   })
                   .catch(async (err) => {
-                    console.log(err);
                     findContactResult.status = 0;
                     findContactResult.partnerId = null;
                     await findContactResult.save();
