@@ -8,9 +8,9 @@
 <details align="center">
  <summary>Help me!</summary>
 
- [Saweria](https://saweria.co/donate/lvstr)
+ [Saweria](https://saweria.co/donate/rand)
  
- [Trakteer](https://trakteer.id/rand)
+ [Trakteer](https://trakteer.id/lvstr)
 </details>
 
 ## Clone Project ini
