@@ -60,6 +60,7 @@ Edit di `.env`
 | Bayar, xixixi |          Mengirim Lokasi         |
 | Bayar, xixixi |     Mengirim Foto/Gif & Video    |
 | Bayar, xixixi |        Mengirim Voice Note       |
+| Bayar, xixixi |         Reply Chat Partner       |
 
 ## Big Thanks to:
 <a href="https://github.com/sProDev"><img src="https://img.shields.io/badge/Suluh%20Sulistiawan-For%20making%20the%20Flowchart-blue"></a><br/>
