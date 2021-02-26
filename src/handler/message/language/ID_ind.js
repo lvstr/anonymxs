@@ -18,6 +18,9 @@ exports.mess = {
     isBrokenPartner: `❌ Partner kamu sedang Bermasalah, silahkan ketik ${prefix}start untuk mencari Partner lain ❌`,
     notCommand: `❌ Kamu memasukan Command yang salah, silahkan ketik ${prefix}help untuk melihat daftar Command ❌`,
     stick: `⚠️ Terjadi error saat mengirim sticker ⚠️`,
+    audioMax: `❌ Gagal, kamu mengirim Audio dengan durasi lebih dari 25 detik, durasi maksimal adalah 25 detik! ❌`,
+    videoMax: `❌ Gagal, kamu mengirim Video dengan durasi lebih dari 20 detik, durasi maksimal adalah 20 detik! ❌`,
+    isGroup: `⚠️ Bot ini tidak bisa masuk Group, Anonymxs hanya untuk Personal Chat ⚠️`,
   },
   only: {
     owner: "❌ Perintah ini hanya bisa di gunakan oleh Owner Bot! ❌",
@@ -49,7 +52,7 @@ exports.tnc = () => {
 Dengan menggunakan source code / bot ini maka anda setuju dengan Syarat dan Kondisi sebagai berikut:
 
 - Source code / bot tidak menyimpan data anda di server kami.
-- Source code / bot tidak bertanggung jawab atas sticker yang anda buat dari bot ini serta video, gambar maupun data lainnya yang anda dapatkan dari Source code / bot ini.
+- Source code / bot tidak bertanggung jawab atas Apa yang anda kirim ke lawan bicara anda.
 
 - Source code / bot tidak boleh digunakan untuk layanan yang bertujuan/berkontribusi dalam: 
     • seks / perdagangan manusia

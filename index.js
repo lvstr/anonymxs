@@ -22,6 +22,7 @@ const {
 const moment = require("moment-timezone");
 const ffmpeg = require("fluent-ffmpeg");
 const lang = require("./src/handler/message/language/ID_ind");
+const compress_images = require("compress-images");
 
 const mongoose = require("mongoose");
 const db = require("./src/model/Contact");
@@ -41,16 +42,6 @@ mongoose.connection.on("error", function (err) {
 // When the connection is disconnected
 mongoose.connection.on("disconnected", function () {
   console.log("Mongoose default connection disconnected");
-});
-
-// If the Node process ends, close the Mongoose connection
-process.on("SIGINT", function () {
-  mongoose.connection.close(function () {
-    console.log(
-      "Mongoose default connection disconnected through app termination"
-    );
-    process.exit(0);
-  });
 });
 
 const color = (text, color) => {
@@ -131,9 +122,10 @@ const starts = async () => {
       const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`];
       const sender = chat.key.remoteJid;
       const isOwner = ownerNumber.includes(sender);
+      const isGroup = from.endsWith("@g.us");
+      const groupMembers = isGroup ? groupMetadata.participants : "";
 
       colors = ["red", "white", "black", "blue", "yellow", "green"];
-      const isMedia = type === "imageMessage" || type === "videoMessage";
       // Database Query
       const findContact = async (contact) => {
         let findContact = await db.findOne({ contactId: contact });
@@ -165,9 +157,7 @@ const starts = async () => {
           time,
           color(command),
           "from",
-          color(sender.split("@")[0]),
-          "args :",
-          color(args.length)
+          color(sender.split("@")[0])
         );
 
       if (!isCmd) {
@@ -212,10 +202,24 @@ const starts = async () => {
           });
       }
 
+      if (isGroup) {
+        if (groupMembers.length > 0) {
+          client.sendMessage(from, mess.error.isGroup, text);
+        }
+      }
+
       if (!isCmd) {
         findContact(from)
           .then(async (res) => {
             let findContactResult = res;
+            if (
+              res.partnerId === from ||
+              (res.partnerId !== null && res.status === 0)
+            ) {
+              res.status = 0;
+              res.partnerId = null;
+              await res.save();
+            }
             if (res.partnerId === null && res.status === 0)
               return client.sendMessage(
                 from,
@@ -227,6 +231,7 @@ const starts = async () => {
                 let contactResult = res;
                 findContactPartner(contactResult.contactId)
                   .then(async (res) => {
+                    //if (res.partnerId === from)
                     if (res.contactId === contactResult.partnerId) {
                       if (type === "conversation") {
                         client.sendMessage(
@@ -234,7 +239,7 @@ const starts = async () => {
                           chat.message.conversation,
                           text
                         );
-                      } //sisanya bayar, xixixixixixixixixixixi
+                      }
                     }
                   })
                   .catch(async (err) => {
@@ -252,7 +257,9 @@ const starts = async () => {
                 client.sendMessage(from, lang.mess.error.sessionNotFound, text);
               });
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
+
             return client.sendMessage(
               from,
               lang.mess.error.notRegistered,
@@ -388,9 +395,8 @@ const starts = async () => {
                   lang.mess.error.sessionNotFound,
                   text
                 );
-              findContactPartner(from)
+              findContactPartner(con.contactId)
                 .then(async (res) => {
-                  client.sendMessage(con.partnerId, `${prefix}next`, text);
                   client.sendMessage(
                     con.partnerId,
                     lang.mess.error.partnerStopSession,
@@ -421,7 +427,7 @@ const starts = async () => {
                       let con = res;
                       findContact(from)
                         .then(async (res) => {
-                          res.partnerId = res.contactId;
+                          res.partnerId = con.contactId;
                           con.partnerId = res.contactId;
                           await res.save();
                           await con.save();
@@ -488,7 +494,6 @@ const starts = async () => {
                 );
               findContactPartner(from)
                 .then(async (res) => {
-                  client.sendMessage(con.partnerId, `${prefix}stop`, text);
                   client.sendMessage(
                     con.partnerId,
                     lang.mess.error.partnerStopSession,
