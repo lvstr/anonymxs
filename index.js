@@ -89,12 +89,13 @@ const starts = async () => {
           : "";
       const command = body.slice(1).trim().split(/ +/).shift().toLowerCase();
       const isCmd = body.startsWith(prefix);
-      const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
+     
 
       const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`];
       const sender = chat.key.remoteJid;
       const isOwner = ownerNumber.includes(sender);
       const isGroup = from.endsWith("@g.us");
+       const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
       const groupMembers = isGroup ? groupMetadata.participants : "";
 
       colors = ["red", "white", "black", "blue", "yellow", "green"];
