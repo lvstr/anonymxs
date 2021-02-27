@@ -5,7 +5,7 @@
 <a href="https://github.com/lvstr"><img title="Author" src="https://img.shields.io/badge/Author-lvstr-blue.svg?style=for-the-badge&logo=github"></a>
 </p>
 <div align="center">
-<a href="https://www.codefactor.io/repository/github/lvstr/anonymxs/overview/master"><img src="https://www.codefactor.io/repository/github/lvstr/anonymxs/badge/master" alt="CodeFactor" /></a>
+[![CodeFactor](https://www.codefactor.io/repository/github/lvstr/anonymxs/badge)](https://www.codefactor.io/repository/github/lvstr/anonymxs)
 </div>
 
 <details align="center">
