@@ -89,6 +89,7 @@ const starts = async () => {
           : "";
       const command = body.slice(1).trim().split(/ +/).shift().toLowerCase();
       const isCmd = body.startsWith(prefix);
+      const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
 
       const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`];
       const sender = chat.key.remoteJid;
