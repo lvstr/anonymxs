@@ -3,26 +3,12 @@ const {
   WAConnection,
   MessageType,
   ReconnectMode,
-  Presence,
-  Mimetype,
 } = require("@adiwajshing/baileys");
-const { exec } = require("child_process");
 const fs = require("fs");
 const chalk = require("chalk");
-const {
-  generateMessageID,
-  getGroupAdmins,
-  getRandom,
-  start,
-  info,
-  success,
-  banner,
-  close,
-} = require("./src/libs/connection.js");
+const { start, success, banner } = require("./src/libs/connection.js");
 const moment = require("moment-timezone");
-const ffmpeg = require("fluent-ffmpeg");
 const lang = require("./src/handler/message/language/ID_ind");
-const compress_images = require("compress-images");
 
 const mongoose = require("mongoose");
 const db = require("./src/model/Contact");
@@ -55,7 +41,6 @@ const starts = async () => {
   client.autoReconnect = ReconnectMode.onConnectionLost;
   client.logger.level = "warn";
   console.log(banner.string);
-  //client.connectOptions.maxRetries = 10;
   client.on("qr", () => {
     console.log(
       color("[", "white"),
@@ -85,19 +70,7 @@ const starts = async () => {
       global.prefix;
       global.blocked;
 
-      const {
-        text,
-        extendedText,
-        contact,
-        location,
-        liveLocation,
-        image,
-        video,
-        sticker,
-        document,
-        audio,
-        product,
-      } = MessageType;
+      const { text } = MessageType;
       const time = moment.tz("Asia/Jakarta").format("DD/MM HH:mm:ss");
       const from = chat.key.remoteJid;
       const type = Object.keys(chat.message)[0];
@@ -115,10 +88,8 @@ const starts = async () => {
           ? chat.message.extendedTextMessage.text
           : "";
       const command = body.slice(1).trim().split(/ +/).shift().toLowerCase();
-      const args = body.trim().split(/ +/).slice(1);
       const isCmd = body.startsWith(prefix);
 
-      const botNumber = client.user.jid;
       const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`];
       const sender = chat.key.remoteJid;
       const isOwner = ownerNumber.includes(sender);

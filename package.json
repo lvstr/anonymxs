@@ -12,7 +12,7 @@
     "url": "git+https://github.com/lvstr/anonymxs.git"
   },
   "keywords": [
-    "anonymousebot"
+    "anonymouse-bot"
   ],
   "author": "Rand",
   "license": "MIT",
@@ -24,14 +24,11 @@
     "@adiwajshing/baileys": "^3.4.1",
     "cfonts": "^2.9.1",
     "chalk": "^4.1.0",
-    "child_process": "^1.0.2",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.20.0",
-    "fluent-ffmpeg": "^2.1.2",
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.11.17",
-    "spin": "^0.0.1",
     "spinnies": "^0.5.1"
   }
 }
