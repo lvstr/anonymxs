@@ -4,6 +4,9 @@
 <p align="center">
 <a href="https://github.com/lvstr"><img title="Author" src="https://img.shields.io/badge/Author-lvstr-blue.svg?style=for-the-badge&logo=github"></a>
 </p>
+<div align="center">
+[![Codefactor](https://www.codefactor.io/repository/github/lvstr/anonymxs/badge)](https://www.codefactor.io/repository/github/lvstr/anonymxs)
+</div>
 
 <details align="center">
  <summary>Help me!</summary>
@@ -12,6 +15,7 @@
  
  [Trakteer](https://trakteer.id/lvstr)
 </details>
+
 
 ## Clone Project ini
 ```bash
