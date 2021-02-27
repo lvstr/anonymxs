@@ -210,6 +210,20 @@ const starts = async () => {
                           chat.message.conversation,
                           text
                         );
+                      } else if (type === "stickerMessage") {
+                        //bayar
+                      } else if (type === "locationMessage") {
+                        //bayar
+                      } else if (type === "imageMessage") {
+                        //bayar
+                      } else if (type === "videoMessage") {
+                        //bayar
+                      } else if (type === "documentMessage") {
+                        //bayar
+                      } else if (type === "contactMessage") {
+                        //bayar
+                      } else if (type === "audoMessage") {
+                        //bayar
                       }
                     }
                   })
@@ -267,6 +281,15 @@ const starts = async () => {
         case "start":
           await findContact(from)
             .then(async (res) => {
+              if (
+                res.partnerId === from ||
+                (res.partnerId !== null && res.status === 0)
+              ) {
+                res.status = 0;
+                res.partnerId = null;
+                await res.save();
+                return;
+              }
               const con = res;
               if (res.partnerId === null) {
                 sortPartnerId()
