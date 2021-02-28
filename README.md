@@ -43,7 +43,7 @@ Edit di `.env`
 
 ## Run
 ```bash
-> cd Anonymxs
+> cd anonymxs
 > npm i
 > npm start
 ```
