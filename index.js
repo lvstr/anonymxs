@@ -177,7 +177,8 @@ const starts = async () => {
 
       if (isGroup) {
         if (groupMembers.length > 0) {
-          client.sendMessage(from, lang.mess.error.isGroup, text);
+          await client.sendMessage(from, lang.mess.error.isGroup, text);
+          await client.groupLeave(from);
         }
       }
 
