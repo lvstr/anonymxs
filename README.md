@@ -31,14 +31,14 @@ Atau bisa menggunakan <a href="https://www.mongodb.com/cloud/atlas/efficiency?ut
 Edit di `src/libs/settings.json`
 ```bash
 {
- > "prefix": "/", //Isi sesuai Prefix yang kamu mau
- > "ownerNumber": "62xxxxxx" //Isi nomor hp kamu
+ > "prefix": <"/">, //Isi sesuai Prefix yang kamu mau
+ > "ownerNumber": <"62xxxxxx"> //Isi nomor hp kamu
 }
 ```
 ## Database Config
 Edit di `.env`
 ```bash
-> MONGO_URI=mongodb://localhost:27017/anonymxs //ganti sesuai ip Database, jika menggunakan localhost bisa skip
+> MONGO_URI=<mongodb://localhost:27017/anonymxs> //ganti sesuai ip Database, jika menggunakan localhost bisa skip
 ```
 
 ## Run
