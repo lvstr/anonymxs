@@ -67,6 +67,7 @@ Edit di `.env`
 | Bayar, xixixi |        Mengirim Document      |
 | Bayar, xixixi |         Reply Chat Partner       |
 | Bayar, xixixi |         Delete chat       |
+| Bayar, xixixi |         Config       |
 
 ## Big Thanks to:
 <a href="https://github.com/sProDev"><img src="https://img.shields.io/badge/Suluh%20Sulistiawan-For%20making%20the%20Flowchart-blue"></a><br/>
