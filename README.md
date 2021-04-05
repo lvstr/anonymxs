@@ -55,11 +55,13 @@ Edit di `.env`
 |     ✅    |   /start  |       Memulai mencari Partner (lawan Bicara)       |
 |     ✅    |   /next   | Menghentikan Sesi sebelumnya dan mencari Sesi baru |
 |     ✅    |   /stop   |                  Menghentikan Sesi                 |
+|     ✅    |   /unregister   |                  Menghapus akun dari Bot                 |
 <br>
 
 | Anonymxs      |               Fitur              |
 |---------------|:--------------------------------:|
 |       ✅       |       Bicara antar Partner       |
+|       ✅       |       Jumlah total Pengguna Bot       |
 | Bayar, xixixi | Mengirim Sticker/Sticker Animasi |
 | Bayar, xixixi |          Mengirim Lokasi         |
 | Bayar, xixixi |     Mengirim Foto/Gif & Video    |
