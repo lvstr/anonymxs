@@ -72,6 +72,6 @@ Edit di `.env`
 | Bayar, xixixi |         Config       |
 
 ## Big Thanks to:
-<a href="https://github.com/sProDev"><img src="https://img.shields.io/badge/Suluh%20Sulistiawan-For%20making%20the%20Flowchart-blue"></a><br/>
+<a href="https://github.com/sooluh"><img src="https://img.shields.io/badge/Suluh%20Sulistiawan-For%20making%20the%20Flowchart-blue"></a><br/>
 <a href="https://github.com/MhankBarBar"><img src="https://img.shields.io/badge/MhankBarBar-For%20making%20the%20Baileys%20Bot%20base%20xd-blue"></a><br/>
 <a href="https://github.com/adiwajshing"><img src="https://img.shields.io/badge/adiwajshing-For%20Baileys%20Library-blue"></a>
