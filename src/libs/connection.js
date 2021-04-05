@@ -2,6 +2,8 @@ const cfonts = require("cfonts");
 const spin = require("spinnies");
 const Crypto = require("crypto");
 
+const db = require("../model/Contact");
+
 const randomBytes = (length) => {
   return Crypto.randomBytes(length);
 };
@@ -69,6 +71,10 @@ const close = (id, text) => {
   spins.fail(id, { text: text });
 };
 
+let totalUser = async () => {
+  return await db.find({});
+};
+
 const banner = cfonts.render("ANONYMXS|ANONYMOUS|WHATSAPP|BOT", {
   font: "chrome",
   color: "candy",
@@ -86,4 +92,5 @@ module.exports = {
   success,
   banner,
   close,
+  totalUser,
 };

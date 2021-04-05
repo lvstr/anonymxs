@@ -6,6 +6,7 @@ exports.mess = {
   findPartner: "⌛ Sedang mencari Partner ⌛",
   partnerFound: "Partner ditemukan!",
   registerSuccess: `Berhasil melakukan Pendaftaran, silahkan ketik ${prefix}help, untuk melihat daftar Perintah`,
+  unRegisterSuccess: `Berhasil menghapus akun! Kamu tidak akan mendapatkan broadcast dan tidak dapat menggunakan bot sebelum register kembali`,
   error: {
     sessionNotFound: `Kamu belum mempunyai Partner, silahkan ketik ${prefix}start, untuk memulai mencari Partner`,
     partnerNotFound: `❌ Gagal, partner tidak ditemukan, silahkan ketik ${prefix}start untuk mencari Partner ❌`,
@@ -27,8 +28,10 @@ exports.mess = {
   },
 };
 
-exports.help = () => {
-  return `List Command:
+exports.help = (totalUser) => {
+  return `Total Pengguna: ${totalUser.length} Orang
+
+List Command:
 
 - *${prefix}register*, untuk mendaftar
 

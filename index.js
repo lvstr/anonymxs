@@ -6,7 +6,12 @@ const {
 } = require("@adiwajshing/baileys");
 const fs = require("fs");
 const chalk = require("chalk");
-const { start, success, banner } = require("./src/libs/connection.js");
+const {
+  start,
+  success,
+  banner,
+  totalUser,
+} = require("./src/libs/connection.js");
 const moment = require("moment-timezone");
 const lang = require("./src/handler/message/language/ID_ind");
 
@@ -89,13 +94,12 @@ const starts = async () => {
           : "";
       const command = body.slice(1).trim().split(/ +/).shift().toLowerCase();
       const isCmd = body.startsWith(prefix);
-     
 
       const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`];
       const sender = chat.key.remoteJid;
       const isOwner = ownerNumber.includes(sender);
       const isGroup = from.endsWith("@g.us");
-       const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
+      const groupMetadata = isGroup ? await client.groupMetadata(from) : "";
       const groupMembers = isGroup ? groupMetadata.participants : "";
 
       colors = ["red", "white", "black", "blue", "yellow", "green"];
@@ -261,7 +265,9 @@ const starts = async () => {
           console.log(MessageType);
           break;
         case "help":
-          client.sendMessage(from, lang.help(), text);
+          totalUser().then((res) => {
+            client.sendMessage(from, lang.help(res), text);
+          });
           break;
         case "tnc":
           client.sendMessage(from, lang.tnc(), text);
@@ -276,9 +282,18 @@ const starts = async () => {
                 client.sendMessage(from, lang.mess.error.isRegistered, text);
               }
             })
-            .catch(async () => {
+            .catch(() => {
               client.sendMessage(from, lang.mess.error.isRegistered, text);
             });
+          break;
+
+        case "unregister":
+          findContact(from).then(async (res) => {
+            if (res !== null) {
+              await res.remove();
+              await client.sendMessage(from, lang.mess.unRegisterSuccess, text);
+            }
+          });
           break;
 
         case "start":
